@@ -5,7 +5,8 @@ import {
   GameState, 
   initializeGame, 
   playRound, 
-  getComputerMove
+  getComputerMove,
+  getGameResult
 } from '@/utils/gameLogic';
 import { leaders } from '@/data/leaders';
 import { useToast } from '@/components/ui/use-toast';
