@@ -1,3 +1,4 @@
+
 import { Leader } from "../data/leaders";
 
 export type GameState = {
@@ -100,11 +101,42 @@ export function playRound(
   };
 }
 
-export function getComputerMove(card: Leader): keyof Leader['stats'] {
-  // AI strategy: pick the highest stat on the card
+export function getComputerMove(
+  card: Leader, 
+  difficulty: string = 'normal'
+): keyof Leader['stats'] {
   const stats = Object.entries(card.stats) as [keyof Leader['stats'], number][];
-  stats.sort((a, b) => b[1] - a[1]); // Sort by value in descending order
-  return stats[0][0]; // Return the name of the highest stat
+  
+  if (difficulty === 'easy') {
+    // In easy mode, randomly pick from the top 3 stats
+    stats.sort((a, b) => b[1] - a[1]);
+    const topThreeStats = stats.slice(0, 3);
+    const randomIndex = Math.floor(Math.random() * topThreeStats.length);
+    return topThreeStats[randomIndex][0];
+  } 
+  else if (difficulty === 'hard') {
+    // In hard mode, always pick the highest stat
+    stats.sort((a, b) => b[1] - a[1]);
+    return stats[0][0];
+  } 
+  else {
+    // Normal mode - mix of strategy
+    // 70% chance to pick from top 2 stats, 30% chance to pick randomly
+    const randomChoice = Math.random();
+    
+    stats.sort((a, b) => b[1] - a[1]);
+    
+    if (randomChoice < 0.7) {
+      // Pick from top 2 stats
+      const topTwoStats = stats.slice(0, 2);
+      const randomIndex = Math.floor(Math.random() * topTwoStats.length);
+      return topTwoStats[randomIndex][0];
+    } else {
+      // Pick randomly
+      const randomIndex = Math.floor(Math.random() * stats.length);
+      return stats[randomIndex][0];
+    }
+  }
 }
 
 export function formatStatName(stat: string): string {

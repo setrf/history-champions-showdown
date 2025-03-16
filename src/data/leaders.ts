@@ -1,4 +1,3 @@
-
 export interface Leader {
   id: number;
   name: string;
@@ -175,6 +174,166 @@ export const leaders: Leader[] = [
       culture: 90,
       economy: 60,
       science: 70
+    }
+  },
+  {
+    id: 11,
+    name: "Charlemagne",
+    era: "Medieval",
+    country: "France/Germany",
+    years: "742 - 814",
+    image: "https://images.unsplash.com/photo-1574313566213-6e3e53f31ff7?q=80&w=500&auto=format&fit=crop",
+    bio: "King of the Franks who united much of Western Europe during the early Middle Ages and laid the foundations for modern France and Germany.",
+    stats: {
+      military: 88,
+      diplomacy: 82,
+      culture: 80,
+      economy: 75,
+      science: 65
+    }
+  },
+  {
+    id: 12,
+    name: "Queen Victoria",
+    era: "Modern",
+    country: "United Kingdom",
+    years: "1819 - 1901",
+    image: "https://images.unsplash.com/photo-1595270424458-791ff4bc1293?q=80&w=500&auto=format&fit=crop",
+    bio: "Reigned during a period of industrial, cultural, political, scientific, and military change and expansion of the British Empire.",
+    stats: {
+      military: 65,
+      diplomacy: 90,
+      culture: 88,
+      economy: 85,
+      science: 70
+    }
+  },
+  {
+    id: 13,
+    name: "Saladin",
+    era: "Medieval",
+    country: "Kurdish/Egypt",
+    years: "1137 - 1193",
+    image: "https://images.unsplash.com/photo-1610017128050-e0766dd804c3?q=80&w=500&auto=format&fit=crop",
+    bio: "First Sultan of Egypt and Syria, famous for his leadership and recapture of Jerusalem from the Crusaders.",
+    stats: {
+      military: 91,
+      diplomacy: 85,
+      culture: 70,
+      economy: 65,
+      science: 60
+    }
+  },
+  {
+    id: 14,
+    name: "Tokugawa Ieyasu",
+    era: "Renaissance",
+    country: "Japan",
+    years: "1543 - 1616",
+    image: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?q=80&w=500&auto=format&fit=crop",
+    bio: "Founder and first shogun of the Tokugawa shogunate, which effectively ruled Japan from 1600 until the Meiji Restoration in 1868.",
+    stats: {
+      military: 86,
+      diplomacy: 82,
+      culture: 75,
+      economy: 80,
+      science: 60
+    }
+  },
+  {
+    id: 15,
+    name: "Mansa Musa",
+    era: "Medieval",
+    country: "Mali Empire",
+    years: "1280 - 1337",
+    image: "https://images.unsplash.com/photo-1655552360516-de0c5c527dc5?q=80&w=500&auto=format&fit=crop",
+    bio: "Tenth Mansa of the Mali Empire, one of the richest people in history whose wealth disrupted economies when he traveled to Mecca.",
+    stats: {
+      military: 70,
+      diplomacy: 85,
+      culture: 80,
+      economy: 99,
+      science: 65
+    }
+  },
+  {
+    id: 16,
+    name: "Winston Churchill",
+    era: "Modern",
+    country: "United Kingdom",
+    years: "1874 - 1965",
+    image: "https://images.unsplash.com/photo-1632765854612-9b02b6ec2b15?q=80&w=500&auto=format&fit=crop",
+    bio: "British statesman who served as Prime Minister during World War II, leading Britain to victory against Nazi Germany.",
+    stats: {
+      military: 80,
+      diplomacy: 92,
+      culture: 85,
+      economy: 70,
+      science: 65
+    }
+  },
+  {
+    id: 17,
+    name: "Empress Theodora",
+    era: "Ancient",
+    country: "Byzantine Empire",
+    years: "500 - 548",
+    image: "https://images.unsplash.com/photo-1564399580075-5dfe9c5d9b9b?q=80&w=500&auto=format&fit=crop",
+    bio: "Byzantine empress who was one of the most influential and powerful women in the empire's history, known for her intelligence and political acumen.",
+    stats: {
+      military: 50,
+      diplomacy: 90,
+      culture: 85,
+      economy: 75,
+      science: 60
+    }
+  },
+  {
+    id: 18,
+    name: "Ashoka the Great",
+    era: "Ancient",
+    country: "Maurya Empire",
+    years: "304 BC - 232 BC",
+    image: "https://images.unsplash.com/photo-1625213780591-bbe65c9acdb3?q=80&w=500&auto=format&fit=crop",
+    bio: "Indian emperor of the Maurya Dynasty who ruled almost the entire Indian subcontinent and converted to Buddhism, promoting non-violence.",
+    stats: {
+      military: 85,
+      diplomacy: 92,
+      culture: 90,
+      economy: 85,
+      science: 70
+    }
+  },
+  {
+    id: 19,
+    name: "Simon Bolivar",
+    era: "Modern",
+    country: "South America",
+    years: "1783 - 1830",
+    image: "https://images.unsplash.com/photo-1529686342540-1b43aec0df75?q=80&w=500&auto=format&fit=crop",
+    bio: "Military and political leader who led the independence movements of several South American countries from Spanish rule.",
+    stats: {
+      military: 88,
+      diplomacy: 85,
+      culture: 75,
+      economy: 65,
+      science: 60
+    }
+  },
+  {
+    id: 20,
+    name: "Maria Theresa",
+    era: "Enlightenment",
+    country: "Austria",
+    years: "1717 - 1780",
+    image: "https://images.unsplash.com/photo-1613628757256-83a0fc38aa51?q=80&w=500&auto=format&fit=crop",
+    bio: "The only female ruler of the Habsburg dominions and the last of the House of Habsburg, implemented significant reforms in education, medicine and civil rights.",
+    stats: {
+      military: 70,
+      diplomacy: 88,
+      culture: 85,
+      economy: 82,
+      science: 75
     }
   }
 ];
