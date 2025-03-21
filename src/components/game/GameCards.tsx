@@ -25,7 +25,7 @@ const GameCards: React.FC<GameCardsProps> = ({
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
       {/* Player card */}
-      <div className="w-full max-w-xs">
+      <div className={`w-full max-w-xs ${showingRoundResult && roundWinner === 'player' ? 'animate-winner-bounce' : ''}`}>
         <p className="text-center font-medium mb-3 animate-slide-up">Your Card</p>
         {playerCard && (
           <LeaderCard 
@@ -47,7 +47,7 @@ const GameCards: React.FC<GameCardsProps> = ({
       </div>
       
       {/* Computer card */}
-      <div className="w-full max-w-xs">
+      <div className={`w-full max-w-xs ${showingRoundResult && roundWinner === 'computer' ? 'animate-winner-bounce' : ''}`}>
         <p className="text-center font-medium mb-3 animate-slide-up" style={{ animationDelay: '200ms' }}>Computer's Card</p>
         {computerCard && (
           <LeaderCard 

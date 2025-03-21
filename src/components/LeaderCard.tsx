@@ -39,7 +39,7 @@ export default function LeaderCard({
       className={cn(
         "relative w-full max-w-xs rounded-2xl overflow-hidden transition-all duration-500 bg-white dark:bg-gray-900",
         "border shadow-card transform",
-        isWinner && "ring-4 ring-yellow-400 shadow-lg shadow-yellow-300/20",
+        isWinner && "ring-4 ring-yellow-400 shadow-lg shadow-yellow-300/20 animate-float",
         isPlayerCard ? "animate-slide-up" : "animate-scale-in",
         isLoaded ? "opacity-100" : "opacity-0"
       )}

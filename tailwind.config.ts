@@ -69,6 +69,7 @@ export default {
 			boxShadow: {
 				'card': '0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
 				'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+				'winner-glow': '0 0 15px 5px rgba(255, 215, 0, 0.5)'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -102,6 +103,10 @@ export default {
         'ping-slow': {
           '0%, 100%': { transform: 'scale(1)', opacity: '1' },
           '50%': { transform: 'scale(1.05)', opacity: '0.8' },
+        },
+        'winner-bounce': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.05)' },
         }
 			},
 			animation: {
@@ -111,6 +116,7 @@ export default {
         'slide-up': 'slide-up 0.6s ease-out forwards',
         'scale-in': 'scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'ping-slow': 'ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'winner-bounce': 'winner-bounce 0.8s ease-in-out 3'
 			}
 		}
 	},
