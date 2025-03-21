@@ -13,5 +13,6 @@ export interface Leader {
     culture: number;
     economy: number;
     science: number;
-  }
+  };
+  achievements?: string[];
 }

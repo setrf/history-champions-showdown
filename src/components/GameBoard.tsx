@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Leader } from '../data/leaders';
 import { 
@@ -19,6 +18,7 @@ import GameMessage from './game/GameMessage';
 import GameCards from './game/GameCards';
 import GameControls from './game/GameControls';
 import GameStatistics from './game/GameStatistics';
+import GameLeaderboard from './game/GameLeaderboard';
 
 export default function GameBoard() {
   const [gameState, setGameState] = useState<GameState>(initializeGame(leaders));
@@ -144,9 +144,10 @@ export default function GameBoard() {
       {/* Game settings */}
       <div className="mb-8 animate-slide-up" style={{ animationDelay: '50ms' }}>
         <Tabs defaultValue="play" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
+          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
             <TabsTrigger value="play">Play Game</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>
+            <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
           </TabsList>
           <TabsContent value="play">
             {/* Game status and score */}
@@ -165,6 +166,12 @@ export default function GameBoard() {
               setDifficulty={setDifficulty}
               onRestart={handleRestart}
               eras={eras}
+            />
+          </TabsContent>
+          <TabsContent value="leaderboard">
+            <GameLeaderboard 
+              currentPlayerScore={gameState.playerScore}
+              roundsPlayed={gameState.roundNumber - 1}
             />
           </TabsContent>
         </Tabs>
@@ -196,10 +203,16 @@ export default function GameBoard() {
       
       {/* Game statistics */}
       {gameState.gameOver && (
-        <GameStatistics 
-          roundNumber={gameState.roundNumber}
-          playerScore={gameState.playerScore}
-        />
+        <div className="space-y-8">
+          <GameStatistics 
+            roundNumber={gameState.roundNumber}
+            playerScore={gameState.playerScore}
+          />
+          <GameLeaderboard 
+            currentPlayerScore={gameState.playerScore}
+            roundsPlayed={gameState.roundNumber - 1}
+          />
+        </div>
       )}
     </div>
   );

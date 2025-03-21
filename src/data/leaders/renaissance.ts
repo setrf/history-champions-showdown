@@ -16,7 +16,12 @@ export const renaissanceLeaders: Leader[] = [
       culture: 92,
       economy: 85,
       science: 65
-    }
+    },
+    achievements: [
+      "Defeated the Spanish Armada",
+      "Established the Church of England",
+      "Patronized the arts and literature"
+    ]
   },
   {
     id: 14,
@@ -32,6 +37,11 @@ export const renaissanceLeaders: Leader[] = [
       culture: 75,
       economy: 80,
       science: 60
-    }
+    },
+    achievements: [
+      "Unified Japan after the Sengoku period",
+      "Established the Tokugawa shogunate",
+      "Created a stable political system that lasted over 250 years"
+    ]
   }
 ];
