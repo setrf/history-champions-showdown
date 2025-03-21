@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Leader } from '@/data/leaders';
 import { cn } from '@/lib/utils';
 import { History } from 'lucide-react';
@@ -15,18 +15,26 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
   isRevealed,
   onLoadComplete
 }) => {
+  const [imageError, setImageError] = useState(false);
+  
+  const handleImageError = () => {
+    console.log(`Failed to load image for ${leader.name}`);
+    setImageError(true);
+  };
+
   return (
     <div className="relative h-52 overflow-hidden bg-gradient-to-b from-gray-800 to-black">
       {isRevealed ? (
         <>
           <img 
-            src={leader.image} 
+            src={imageError ? '/placeholder.svg' : leader.image} 
             alt={leader.name}
             className={cn(
               "w-full h-full object-cover object-center transition-opacity duration-700",
               "opacity-70 scale-105"
             )}
             onLoad={onLoadComplete}
+            onError={handleImageError}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
           <div className="absolute bottom-0 left-0 p-4 text-white z-10">
