@@ -59,6 +59,13 @@ export default {
           cultural: '#9376E0',
           economic: '#5D9C59',
           scientific: '#FFA41B'
+        },
+        era: {
+          ancient: '#8C7851',
+          medieval: '#7D5A50',
+          renaissance: '#B85C38', 
+          enlightenment: '#4A55A2',
+          modern: '#1A5F7A'
         }
 			},
 			borderRadius: {
@@ -69,8 +76,13 @@ export default {
 			boxShadow: {
 				'card': '0 10px 30px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
 				'card-hover': '0 20px 30px -10px rgba(0, 0, 0, 0.15), 0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-				'winner-glow': '0 0 15px 5px rgba(255, 215, 0, 0.5)'
+				'winner-glow': '0 0 15px 5px rgba(255, 215, 0, 0.5)',
+        'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)'
 			},
+      fontFamily: {
+        'cinzel': ['Cinzel', 'serif'],
+        'sans': ['Inter', 'sans-serif']
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
@@ -107,6 +119,10 @@ export default {
         'winner-bounce': {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.05)' },
+        },
+        'shimmer': {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' }
         }
 			},
 			animation: {
@@ -116,8 +132,14 @@ export default {
         'slide-up': 'slide-up 0.6s ease-out forwards',
         'scale-in': 'scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
         'ping-slow': 'ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite',
-        'winner-bounce': 'winner-bounce 0.8s ease-in-out 3'
-			}
+        'winner-bounce': 'winner-bounce 0.8s ease-in-out 3',
+        'shimmer': 'shimmer 2s infinite linear'
+			},
+      backgroundImage: {
+        'hero-pattern': "url('/patterns/hero-pattern.svg')",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'shimmer': 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)'
+      }
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
