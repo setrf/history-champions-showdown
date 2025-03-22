@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Leader } from '../data/leaders';
 import { 
@@ -20,7 +21,11 @@ import GameControls from './game/GameControls';
 import GameStatistics from './game/GameStatistics';
 import GameLeaderboard from './game/GameLeaderboard';
 
-export default function GameBoard() {
+interface GameBoardProps {
+  onEraChange?: (era: string) => void;
+}
+
+export default function GameBoard({ onEraChange }: GameBoardProps) {
   const [gameState, setGameState] = useState<GameState>(initializeGame(leaders));
   const [isComputerThinking, setIsComputerThinking] = useState(false);
   const [showingRoundResult, setShowingRoundResult] = useState(false);
@@ -30,6 +35,13 @@ export default function GameBoard() {
 
   // Get unique eras from leaders data
   const eras = ["all", ...Array.from(new Set(leaders.map(leader => leader.era)))];
+
+  // Notify parent component when era changes
+  useEffect(() => {
+    if (onEraChange) {
+      onEraChange(selectedEra);
+    }
+  }, [selectedEra, onEraChange]);
 
   // Start a new game with filtered leaders based on era
   const startNewGame = () => {
@@ -139,6 +151,11 @@ export default function GameBoard() {
     startNewGame();
   };
 
+  // Handle era selection change
+  const handleEraChange = (era: string) => {
+    setSelectedEra(era);
+  };
+
   return (
     <div className="game-container py-8">
       {/* Game settings */}
@@ -161,7 +178,7 @@ export default function GameBoard() {
           <TabsContent value="settings">
             <GameSettings 
               selectedEra={selectedEra}
-              setSelectedEra={setSelectedEra}
+              setSelectedEra={handleEraChange}
               difficulty={difficulty}
               setDifficulty={setDifficulty}
               onRestart={handleRestart}

@@ -196,6 +196,22 @@
     background-size: 200% 100%;
     animation: shine 3s infinite linear;
   }
+
+  /* Background gradient overlay */
+  .bg-gradient-radial {
+    background: radial-gradient(circle at center, transparent 0%, var(--background) 80%);
+  }
+  
+  /* Era-specific backgrounds from the tailwind config will apply here */
+  .bg-ancient-pattern,
+  .bg-medieval-pattern,
+  .bg-renaissance-pattern,
+  .bg-enlightenment-pattern,
+  .bg-modern-pattern,
+  .bg-default-pattern {
+    @apply bg-repeat;
+    background-size: 100px 100px;
+  }
 }
 
 @layer utilities {

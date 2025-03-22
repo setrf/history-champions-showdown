@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import GameBoard from '@/components/GameBoard';
+import Background from '@/components/Background';
 import { Button } from '@/components/ui/button';
 import { 
   Dialog,
@@ -16,9 +17,18 @@ import {
 import { HelpCircle, Scroll } from 'lucide-react';
 
 const Index = () => {
+  const [currentEra, setCurrentEra] = useState<string>("all");
+  
+  // This will be passed down to GameBoard and used to update the background
+  const handleEraChange = (era: string) => {
+    setCurrentEra(era);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 paper-texture">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-950 dark:to-gray-900 relative">
+      <Background era={currentEra} />
+      
+      <div className="container mx-auto px-4 py-8 relative">
         <Header />
         <main>
           <div className="flex justify-end mb-4">
@@ -79,7 +89,7 @@ const Index = () => {
               </DialogContent>
             </Dialog>
           </div>
-          <GameBoard />
+          <GameBoard onEraChange={handleEraChange} />
         </main>
         <footer className="py-6 text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Historical Leaders Card Game</p>
