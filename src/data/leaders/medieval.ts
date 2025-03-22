@@ -16,7 +16,12 @@ export const medievalLeaders: Leader[] = [
       culture: 60,
       economy: 85,
       science: 50
-    }
+    },
+    achievements: [
+      "Created the largest contiguous land empire in history",
+      "Established the Pax Mongolica",
+      "Revolutionized military tactics and organization"
+    ]
   },
   {
     id: 9,
@@ -32,7 +37,12 @@ export const medievalLeaders: Leader[] = [
       culture: 85,
       economy: 90,
       science: 75
-    }
+    },
+    achievements: [
+      "Reformed the imperial examination system",
+      "Expanded Chinese influence into Central Asia",
+      "Promoted Buddhism throughout China"
+    ]
   },
   {
     id: 11,
@@ -48,7 +58,12 @@ export const medievalLeaders: Leader[] = [
       culture: 80,
       economy: 75,
       science: 65
-    }
+    },
+    achievements: [
+      "Created the First European Empire since Rome",
+      "Sparked the Carolingian Renaissance",
+      "Reformed education and standardized currency"
+    ]
   },
   {
     id: 13,
@@ -64,7 +79,12 @@ export const medievalLeaders: Leader[] = [
       culture: 70,
       economy: 65,
       science: 60
-    }
+    },
+    achievements: [
+      "Recaptured Jerusalem from the Crusaders",
+      "United Egypt and Syria",
+      "Known for chivalry and mercy toward enemies"
+    ]
   },
   {
     id: 15,
@@ -80,6 +100,11 @@ export const medievalLeaders: Leader[] = [
       culture: 80,
       economy: 99,
       science: 65
-    }
+    },
+    achievements: [
+      "Expanded the Mali Empire to its greatest extent",
+      "Built the great mosques of Timbuktu and Gao",
+      "Famous pilgrimage to Mecca that showcased his immense wealth"
+    ]
   }
 ];

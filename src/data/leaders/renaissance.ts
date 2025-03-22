@@ -43,5 +43,26 @@ export const renaissanceLeaders: Leader[] = [
       "Established the Tokugawa shogunate",
       "Created a stable political system that lasted over 250 years"
     ]
+  },
+  {
+    id: 21,
+    name: "Lorenzo de Medici",
+    era: "Renaissance",
+    country: "Florence",
+    years: "1449 - 1492",
+    image: "/leaders/lorenzo.jpg",
+    bio: "Ruler of the Florentine Republic during the Italian Renaissance, statesman, and patron of the arts who greatly influenced cultural and political development.",
+    stats: {
+      military: 60,
+      diplomacy: 92,
+      culture: 95,
+      economy: 88,
+      science: 78
+    },
+    achievements: [
+      "Primary patron of Renaissance art in Florence",
+      "Maintained peace in Italy through diplomatic balance of power",
+      "Commissioned works by Michelangelo, Botticelli, and da Vinci"
+    ]
   }
 ];

@@ -16,7 +16,12 @@ export const ancientLeaders: Leader[] = [
       culture: 85,
       economy: 70,
       science: 60
-    }
+    },
+    achievements: [
+      "Conquered the Persian Empire",
+      "Founded over 70 cities",
+      "Spread Hellenistic culture throughout Asia"
+    ]
   },
   {
     id: 2,
@@ -32,7 +37,12 @@ export const ancientLeaders: Leader[] = [
       culture: 88,
       economy: 78,
       science: 70
-    }
+    },
+    achievements: [
+      "Preserved Egyptian independence during Roman expansion",
+      "Mastered multiple languages",
+      "Patronized Egyptian temples and religions"
+    ]
   },
   {
     id: 3,
@@ -48,7 +58,12 @@ export const ancientLeaders: Leader[] = [
       culture: 75,
       economy: 65,
       science: 60
-    }
+    },
+    achievements: [
+      "Conquered Gaul",
+      "Reformed the Roman calendar",
+      "Centralized the Roman government"
+    ]
   },
   {
     id: 17,
@@ -64,7 +79,12 @@ export const ancientLeaders: Leader[] = [
       culture: 85,
       economy: 75,
       science: 60
-    }
+    },
+    achievements: [
+      "Influenced Justinian's legal reforms",
+      "Protected women's rights",
+      "Saved Justinian's throne during the Nika riots"
+    ]
   },
   {
     id: 18,
@@ -80,6 +100,11 @@ export const ancientLeaders: Leader[] = [
       culture: 90,
       economy: 85,
       science: 70
-    }
+    },
+    achievements: [
+      "United most of the Indian subcontinent",
+      "Spread Buddhism throughout Asia",
+      "Created the famous Ashoka Pillars and edicts"
+    ]
   }
 ];

@@ -16,7 +16,12 @@ export const enlightenmentLeaders: Leader[] = [
       culture: 90,
       economy: 80,
       science: 75
-    }
+    },
+    achievements: [
+      "Expanded Russian territory and modernized administration",
+      "Corresponded with Enlightenment philosophers",
+      "Established the Smolny Institute for Noble Girls"
+    ]
   },
   {
     id: 20,
@@ -32,6 +37,32 @@ export const enlightenmentLeaders: Leader[] = [
       culture: 85,
       economy: 82,
       science: 75
-    }
+    },
+    achievements: [
+      "Restructured the Habsburg monarchy",
+      "Instituted comprehensive educational reforms",
+      "Modernized the Austrian military system"
+    ]
+  },
+  {
+    id: 22,
+    name: "Frederick the Great",
+    era: "Enlightenment",
+    country: "Prussia",
+    years: "1712 - 1786",
+    image: "/leaders/frederick.jpg",
+    bio: "King of Prussia who transformed Prussia into a major European power through his military victories and domestic reforms.",
+    stats: {
+      military: 94,
+      diplomacy: 85,
+      culture: 80,
+      economy: 78,
+      science: 85
+    },
+    achievements: [
+      "Transformed Prussia into a major European power",
+      "Patron of the arts, music, and Enlightenment ideas",
+      "Military genius who modernized Prussian tactics"
+    ]
   }
 ];

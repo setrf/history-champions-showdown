@@ -16,7 +16,12 @@ export const modernLeaders: Leader[] = [
       culture: 70,
       economy: 75,
       science: 85
-    }
+    },
+    achievements: [
+      "Conquered much of Europe",
+      "Created the Napoleonic Code",
+      "Reformed French education system"
+    ]
   },
   {
     id: 8,
@@ -32,7 +37,12 @@ export const modernLeaders: Leader[] = [
       culture: 75,
       economy: 80,
       science: 65
-    }
+    },
+    achievements: [
+      "Preserved the Union during the Civil War",
+      "Issued the Emancipation Proclamation",
+      "Modernized banking, railroads, and higher education"
+    ]
   },
   {
     id: 10,
@@ -48,7 +58,12 @@ export const modernLeaders: Leader[] = [
       culture: 90,
       economy: 60,
       science: 70
-    }
+    },
+    achievements: [
+      "Led India to independence through non-violence",
+      "Inspired civil rights movements globally",
+      "Championed religious pluralism and equality"
+    ]
   },
   {
     id: 12,
@@ -64,7 +79,12 @@ export const modernLeaders: Leader[] = [
       culture: 88,
       economy: 85,
       science: 70
-    }
+    },
+    achievements: [
+      "Oversaw expansion of the British Empire",
+      "Presided over the Victorian Era of industrial progress",
+      "Reformed the monarchy to be more accessible to the public"
+    ]
   },
   {
     id: 16,
@@ -80,7 +100,12 @@ export const modernLeaders: Leader[] = [
       culture: 85,
       economy: 70,
       science: 65
-    }
+    },
+    achievements: [
+      "Led Britain to victory in World War II",
+      "Won Nobel Prize in Literature",
+      "Warned of Soviet expansion in his 'Iron Curtain' speech"
+    ]
   },
   {
     id: 19,
@@ -96,6 +121,11 @@ export const modernLeaders: Leader[] = [
       culture: 75,
       economy: 65,
       science: 60
-    }
+    },
+    achievements: [
+      "Liberated six countries from Spanish rule",
+      "Called 'The Liberator' across South America",
+      "Advocated Pan-American unity"
+    ]
   }
 ];
