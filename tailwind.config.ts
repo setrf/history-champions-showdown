@@ -84,7 +84,7 @@ export default {
         'inner': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)'
       },
       fontFamily: {
-        'cinzel': ['Cinzel', 'serif'],
+        'spectral': ['Spectral', 'serif'],
         'sans': ['Inter', 'sans-serif']
       },
       keyframes: {

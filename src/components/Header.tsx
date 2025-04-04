@@ -13,7 +13,7 @@ export default function Header() {
             </div>
           </div>
           
-          <h1 className="text-4xl font-bold font-cinzel tracking-tight animate-slide-up flex items-center justify-center">
+          <h1 className="text-4xl font-bold font-spectral tracking-tight animate-slide-up flex items-center justify-center">
             Historical Leaders
             <span className="ml-2">
               <Sparkles className="h-5 w-5 text-amber-500 animate-pulse" />
