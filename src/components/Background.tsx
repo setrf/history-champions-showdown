@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Scroll, MapPin } from 'lucide-react';
+import { Scroll, MapPin, Landmark } from 'lucide-react';
 
 interface BackgroundProps {
   era?: string;
@@ -43,11 +43,32 @@ const Background: React.FC<BackgroundProps> = ({
     }
   };
 
+  // Get era-specific accent color
+  const getEraAccentColor = () => {
+    switch(era) {
+      case "ancient":
+        return "from-era-ancient/30 to-era-ancient/5";
+      case "medieval":
+        return "from-era-medieval/30 to-era-medieval/5";
+      case "renaissance":
+        return "from-era-renaissance/30 to-era-renaissance/5";
+      case "enlightenment":
+        return "from-era-enlightenment/30 to-era-enlightenment/5";
+      case "modern":
+        return "from-era-modern/30 to-era-modern/5";
+      default:
+        return "from-primary/20 to-primary/5";
+    }
+  };
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Base background with era-specific pattern */}
+      {/* Base color gradient */}
+      <div className={`absolute inset-0 bg-gradient-to-b ${getEraAccentColor()} dark:opacity-30`}></div>
+      
+      {/* Era-specific pattern */}
       <div 
-        className={`absolute inset-0 ${getBackgroundPattern()} opacity-[0.15] dark:opacity-[0.07]`}
+        className={`absolute inset-0 ${getBackgroundPattern()} opacity-[0.07] dark:opacity-[0.05]`}
       />
       
       {/* Parallax map elements */}
@@ -58,24 +79,40 @@ const Background: React.FC<BackgroundProps> = ({
           transition: 'transform 0.1s ease-out'
         }}
       >
-        {/* Decorative map pins */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <MapPin 
+        {/* Decorative landmarks */}
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Landmark 
             key={i}
             className="absolute text-primary/10 dark:text-primary/5" 
             style={{
-              width: `${Math.random() * 30 + 20}px`,
-              height: `${Math.random() * 30 + 20}px`,
+              width: `${Math.random() * 40 + 20}px`,
+              height: `${Math.random() * 40 + 20}px`,
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 50 + 25}%`,
+              opacity: Math.random() * 0.3 + 0.1,
+              transform: `rotate(${Math.random() * 10 - 5}deg)`,
+            }}
+          />
+        ))}
+        
+        {/* Decorative map pins */}
+        {Array.from({ length: 4 }).map((_, i) => (
+          <MapPin 
+            key={i + 10}
+            className="absolute text-primary/10 dark:text-primary/5" 
+            style={{
+              width: `${Math.random() * 30 + 15}px`,
+              height: `${Math.random() * 30 + 15}px`,
               left: `${Math.random() * 90}%`,
               top: `${Math.random() * 90}%`,
-              opacity: Math.random() * 0.5 + 0.2,
+              opacity: Math.random() * 0.3 + 0.1,
               transform: `rotate(${Math.random() * 30 - 15}deg)`,
             }}
           />
         ))}
       </div>
       
-      {/* Decorative scrolls */}
+      {/* Decorative scrolls with parallax effect */}
       <div 
         className="absolute inset-0"
         style={{ 
@@ -83,16 +120,16 @@ const Background: React.FC<BackgroundProps> = ({
           transition: 'transform 0.1s ease-out'
         }}
       >
-        {Array.from({ length: 4 }).map((_, i) => (
+        {Array.from({ length: 3 }).map((_, i) => (
           <Scroll 
-            key={i}
+            key={i + 20}
             className="absolute text-primary/10 dark:text-primary/5" 
             style={{
-              width: `${Math.random() * 40 + 25}px`,
-              height: `${Math.random() * 40 + 25}px`,
+              width: `${Math.random() * 40 + 20}px`,
+              height: `${Math.random() * 40 + 20}px`,
               left: `${Math.random() * 90}%`,
               top: `${Math.random() * 90}%`,
-              opacity: Math.random() * 0.4 + 0.2,
+              opacity: Math.random() * 0.4 + 0.1,
               transform: `rotate(${Math.random() * 60 - 30}deg)`,
             }}
           />
@@ -100,7 +137,7 @@ const Background: React.FC<BackgroundProps> = ({
       </div>
       
       {/* Vignette effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent to-background/80 dark:to-background/90" />
+      <div className="absolute inset-0 bg-gradient-radial from-transparent to-background/90 dark:to-background/95" />
     </div>
   );
 };
