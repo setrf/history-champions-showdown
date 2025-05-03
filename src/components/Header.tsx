@@ -8,12 +8,12 @@ export default function Header() {
       <div className="container max-w-7xl mx-auto px-4">
         <div className="flex flex-col items-center justify-center text-center">
           <div className="animate-scale-in">
-            <div className="inline-flex items-center justify-center p-3 bg-gradient-to-br from-amber-400 to-amber-600 dark:from-amber-500 dark:to-amber-700 rounded-full mb-4 shadow-lg">
+            <div className="inline-flex items-center justify-center p-3 bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-700 rounded-full mb-4 shadow-lg">
               <Crown className="w-8 h-8 text-white" />
             </div>
           </div>
           
-          <h1 className="text-4xl font-bold font-spectral tracking-tight animate-slide-up flex items-center justify-center">
+          <h1 className="text-4xl font-bold font-roboto tracking-tight animate-slide-up flex items-center justify-center">
             Historical Leaders
             <span className="ml-2">
               <Sparkles className="h-5 w-5 text-amber-500 animate-pulse" />

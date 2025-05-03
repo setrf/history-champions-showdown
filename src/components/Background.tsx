@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Scroll, MapPin, Landmark } from 'lucide-react';
+import { Scroll, MapPin, Landmark, Zap, Diamond, BarChart3 } from 'lucide-react';
 
 interface BackgroundProps {
   era?: string;
@@ -57,18 +57,43 @@ const Background: React.FC<BackgroundProps> = ({
       case "modern":
         return "from-era-modern/30 to-era-modern/5";
       default:
-        return "from-primary/20 to-primary/5";
+        return "from-indigo-500/20 to-indigo-500/5";
     }
   };
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      {/* Base color gradient */}
-      <div className={`absolute inset-0 bg-gradient-to-b ${getEraAccentColor()} dark:opacity-30`}></div>
+      {/* Dynamic gradient background */}
+      <div 
+        className={`absolute inset-0 bg-gradient-to-br ${getEraAccentColor()} dark:opacity-30`}
+        style={{
+          transition: 'background 0.5s ease',
+        }}
+      />
+      
+      {/* Animated geometric shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <div 
+            key={`shape-${i}`}
+            className="absolute rounded-full bg-primary/5 dark:bg-primary/10"
+            style={{
+              width: `${Math.random() * 200 + 50}px`,
+              height: `${Math.random() * 200 + 50}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              opacity: Math.random() * 0.4 + 0.1,
+              transform: animate ? `translateY(${scrollPosition * (0.05 + Math.random() * 0.1) * (i % 2 ? 1 : -1)}px)` : 'none',
+              transition: 'transform 0.1s ease-out',
+              backdropFilter: 'blur(80px)',
+            }}
+          />
+        ))}
+      </div>
       
       {/* Era-specific pattern */}
       <div 
-        className={`absolute inset-0 ${getBackgroundPattern()} opacity-[0.07] dark:opacity-[0.05]`}
+        className={`absolute inset-0 ${getBackgroundPattern()} opacity-[0.05] dark:opacity-[0.03]`}
       />
       
       {/* Parallax map elements */}
@@ -79,7 +104,7 @@ const Background: React.FC<BackgroundProps> = ({
           transition: 'transform 0.1s ease-out'
         }}
       >
-        {/* Decorative landmarks */}
+        {/* Decorative icons */}
         {Array.from({ length: 3 }).map((_, i) => (
           <Landmark 
             key={i}
@@ -91,6 +116,37 @@ const Background: React.FC<BackgroundProps> = ({
               top: `${Math.random() * 50 + 25}%`,
               opacity: Math.random() * 0.3 + 0.1,
               transform: `rotate(${Math.random() * 10 - 5}deg)`,
+            }}
+          />
+        ))}
+        
+        {/* Additional modern icons */}
+        {Array.from({ length: 2 }).map((_, i) => (
+          <Diamond
+            key={i + 30}
+            className="absolute text-primary/10 dark:text-primary/5" 
+            style={{
+              width: `${Math.random() * 30 + 15}px`,
+              height: `${Math.random() * 30 + 15}px`,
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              opacity: Math.random() * 0.3 + 0.1,
+              transform: `rotate(${Math.random() * 45}deg)`,
+            }}
+          />
+        ))}
+        
+        {Array.from({ length: 2 }).map((_, i) => (
+          <BarChart3
+            key={i + 40}
+            className="absolute text-primary/10 dark:text-primary/5" 
+            style={{
+              width: `${Math.random() * 35 + 15}px`,
+              height: `${Math.random() * 35 + 15}px`,
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              opacity: Math.random() * 0.3 + 0.1,
+              transform: `rotate(${Math.random() * 25 - 12}deg)`,
             }}
           />
         ))}
@@ -134,10 +190,25 @@ const Background: React.FC<BackgroundProps> = ({
             }}
           />
         ))}
+        
+        {Array.from({ length: 2 }).map((_, i) => (
+          <Zap
+            key={i + 50}
+            className="absolute text-primary/10 dark:text-primary/5" 
+            style={{
+              width: `${Math.random() * 30 + 20}px`,
+              height: `${Math.random() * 30 + 20}px`,
+              left: `${Math.random() * 90}%`,
+              top: `${Math.random() * 90}%`,
+              opacity: Math.random() * 0.3 + 0.1,
+              transform: `rotate(${Math.random() * 20 - 10}deg)`,
+            }}
+          />
+        ))}
       </div>
       
-      {/* Vignette effect */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent to-background/90 dark:to-background/95" />
+      {/* Modern radial gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-background/90 dark:to-background/95" />
     </div>
   );
 };

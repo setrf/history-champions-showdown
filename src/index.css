@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,300;8..144,400;8..144,500;8..144,600;8..144,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -73,7 +75,7 @@
 
   html, body {
     @apply antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Roboto Flex', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -82,8 +84,10 @@
     @apply bg-background text-foreground min-h-screen;
   }
 
-  h1, h2, h3, h4, h5, h6, .font-cinzel {
-    font-family: 'Spectral', serif;
+  h1, h2, h3, h4, h5, h6, .font-spectral {
+    font-family: 'Roboto Flex', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 
   /* Custom animations */
@@ -139,7 +143,7 @@
 
 @layer components {
   .glass-morphism {
-    @apply bg-white/90 dark:bg-black/50 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-xl;
+    @apply bg-white/80 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-xl;
   }
   
   .card-hover {
@@ -179,7 +183,7 @@
   }
   
   .fancy-title {
-    @apply font-cinzel text-2xl font-bold tracking-wide;
+    @apply font-roboto text-2xl font-bold tracking-tight;
   }
   
   .animated-border {

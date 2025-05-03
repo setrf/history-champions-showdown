@@ -68,21 +68,21 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
     }
   };
   
-  // Get era-specific overlay color
+  // Get era-specific overlay color with more modern gradients
   const getEraOverlay = () => {
     switch (leader.era.toLowerCase()) {
       case 'ancient':
-        return 'bg-gradient-to-t from-amber-900/90 to-amber-900/30';
+        return 'bg-gradient-to-t from-amber-900/80 via-amber-800/50 to-transparent';
       case 'medieval':
-        return 'bg-gradient-to-t from-slate-900/90 to-slate-900/30';
+        return 'bg-gradient-to-t from-slate-900/80 via-slate-800/50 to-transparent';
       case 'renaissance':
-        return 'bg-gradient-to-t from-red-900/90 to-red-900/30';
+        return 'bg-gradient-to-t from-red-900/80 via-red-800/50 to-transparent';
       case 'enlightenment':
-        return 'bg-gradient-to-t from-blue-900/90 to-blue-900/30';
+        return 'bg-gradient-to-t from-blue-900/80 via-blue-800/50 to-transparent';
       case 'modern':
-        return 'bg-gradient-to-t from-teal-900/90 to-teal-900/30';
+        return 'bg-gradient-to-t from-teal-900/80 via-teal-800/50 to-transparent';
       default:
-        return 'bg-gradient-to-t from-gray-900/90 to-gray-900/30';
+        return 'bg-gradient-to-t from-gray-900/80 via-gray-800/50 to-transparent';
     }
   };
 
@@ -92,31 +92,31 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
   }, [onLoadComplete]);
 
   return (
-    <div className="relative h-52 overflow-hidden transition-colors duration-500">
+    <div className="relative h-52 overflow-hidden rounded-t-lg transition-colors duration-500">
       {isRevealed ? (
         <>
           {/* Wikimedia image as background */}
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-center transform transition-transform duration-700 hover:scale-110"
             style={{ backgroundImage: `url(${getWikimediaImage(leader.name)})` }}
           />
           
           {/* Overlay for better text readability */}
           <div className={`absolute inset-0 ${getEraOverlay()}`}></div>
           
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
+          <div className="absolute inset-0 backdrop-blur-[1px]"></div>
           <div className="absolute bottom-0 left-0 p-4 text-white z-10">
-            <h3 className="text-2xl font-bold font-spectral">{leader.name}</h3>
-            <div className="flex items-center mt-1 text-white/80">
+            <h3 className="text-2xl font-bold font-roboto tracking-tight">{leader.name}</h3>
+            <div className="flex items-center mt-1 text-white/90">
               <History className="w-4 h-4 mr-1" />
               <span className="text-sm">{leader.era} • {leader.country}</span>
             </div>
           </div>
         </>
       ) : (
-        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+        <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
           <div className="rounded-full w-16 h-16 bg-black/20 flex items-center justify-center backdrop-blur-sm">
-            <span className="text-white/60 text-2xl font-spectral">?</span>
+            <span className="text-white/60 text-2xl font-roboto">?</span>
           </div>
         </div>
       )}
