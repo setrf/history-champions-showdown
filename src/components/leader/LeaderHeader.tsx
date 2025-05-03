@@ -15,39 +15,74 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
   isRevealed,
   onLoadComplete
 }) => {
-  // Generate a background based on leader's era
-  const getEraBackground = () => {
-    switch (leader.era.toLowerCase()) {
+  // Updated to use Wikimedia images based on leader's name
+  const getWikimediaImage = (leaderName: string) => {
+    // Convert leader name to a format suitable for Wikimedia Commons
+    const formattedName = leaderName.toLowerCase().replace(/ /g, '_');
+    
+    // Map of leader names to specific Wikimedia Commons URLs
+    const imageMapping: Record<string, string> = {
+      'alexander the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Alexander_the_Great_mosaic.jpg/800px-Alexander_the_Great_mosaic.jpg',
+      'cleopatra vii': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kleopatra-VII.-Altes-Museum-Berlin1.jpg/800px-Kleopatra-VII.-Altes-Museum-Berlin1.jpg',
+      'julius caesar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Gaius_Julius_Caesar_%28100-44_BC%29.jpg/800px-Gaius_Julius_Caesar_%28100-44_BC%29.jpg',
+      'genghis khan': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/YuanEmperorAlbumGenghisPortrait.jpg/800px-YuanEmperorAlbumGenghisPortrait.jpg',
+      'queen elizabeth i': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Darnley_stage_3.jpg/800px-Darnley_stage_3.jpg',
+      'napoleon bonaparte': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Jacques-Louis_David_-_The_Emperor_Napoleon_in_His_Study_at_the_Tuileries_-_Google_Art_Project.jpg/800px-Jacques-Louis_David_-_The_Emperor_Napoleon_in_His_Study_at_the_Tuileries_-_Google_Art_Project.jpg',
+      'catherine the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Catherine_II_by_J.B.Lampi_%281780s%2C_Kunsthistorisches_Museum%29.jpg/800px-Catherine_II_by_J.B.Lampi_%281780s%2C_Kunsthistorisches_Museum%29.jpg',
+      'abraham lincoln': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/800px-Abraham_Lincoln_O-77_matte_collodion_print.jpg',
+      'empress wu zetian': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/A_Tang_Dynasty_Empress_Wu_Zetian.jpg/800px-A_Tang_Dynasty_Empress_Wu_Zetian.jpg',
+      'mahatma gandhi': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/800px-Mahatma-Gandhi%2C_studio%2C_1931.jpg',
+      'charlemagne': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Charlemagne_denier_Mayence_812_814.jpg/800px-Charlemagne_denier_Mayence_812_814.jpg',
+      'queen victoria': 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Queen_Victoria_by_Bassano.jpg/800px-Queen_Victoria_by_Bassano.jpg',
+      'saladin': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Saladin2.jpg/800px-Saladin2.jpg',
+      'tokugawa ieyasu': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Tokugawa_Ieyasu2.JPG/800px-Tokugawa_Ieyasu2.JPG',
+      'mansa musa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mansa_Musa.jpg/800px-Mansa_Musa.jpg',
+      'winston churchill': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sir_Winston_Churchill_-_19086236948.jpg/800px-Sir_Winston_Churchill_-_19086236948.jpg',
+      'empress theodora': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Meister_von_San_Vitale_in_Ravenna_003.jpg/800px-Meister_von_San_Vitale_in_Ravenna_003.jpg',
+      'ashoka the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Emperor_Ashoka_Iron_Pillar_Old_Delhi_India_1997.jpg/787px-Emperor_Ashoka_Iron_Pillar_Old_Delhi_India_1997.jpg',
+      'simon bolivar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sim%C3%B3n_Bol%C3%ADvar_by_Arturo_Michelena.jpg/800px-Sim%C3%B3n_Bol%C3%ADvar_by_Arturo_Michelena.jpg',
+      'maria theresa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Maria_Theresia_portraitt.jpg/800px-Maria_Theresia_portraitt.jpg',
+      'lorenzo de medici': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Giorgio_Vasari_-_Lorenzo_de%27_Medici_-_Google_Art_Project.jpg/800px-Giorgio_Vasari_-_Lorenzo_de%27_Medici_-_Google_Art_Project.jpg',
+      'frederick the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Friedrich_der_Grosse_1763.jpg/800px-Friedrich_der_Grosse_1763.jpg'
+    };
+    
+    // Return the specific image or a fallback based on era
+    return imageMapping[formattedName.toLowerCase()] || getEraDefaultImage(leader.era);
+  };
+  
+  // Fallback images by era if specific leader image isn't found
+  const getEraDefaultImage = (era: string) => {
+    switch (era.toLowerCase()) {
       case 'ancient':
-        return 'bg-gradient-to-br from-amber-700 to-amber-900';
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Acropolis_of_Athens_01361.jpg/800px-Acropolis_of_Athens_01361.jpg';
       case 'medieval':
-        return 'bg-gradient-to-br from-slate-700 to-slate-900';
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bodiam-castle-10My863.jpg/800px-Bodiam-castle-10My863.jpg';
       case 'renaissance':
-        return 'bg-gradient-to-br from-red-700 to-red-900';
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Le_Studiolo_du_Duc_Federico_da_Montefeltro.jpg/800px-Le_Studiolo_du_Duc_Federico_da_Montefeltro.jpg';
       case 'enlightenment':
-        return 'bg-gradient-to-br from-blue-700 to-blue-900';
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Château_de_Versailles%2C_salon_de_Diane.jpg/800px-Château_de_Versailles%2C_salon_de_Diane.jpg';
       case 'modern':
-        return 'bg-gradient-to-br from-teal-700 to-teal-900';
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg/800px-Lower_Manhattan_from_Staten_Island_Ferry_Corrected_Jan_2006.jpg';
       default:
-        return 'bg-gradient-to-br from-gray-700 to-gray-900';
+        return 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Trajan%27s_Market.jpg/800px-Trajan%27s_Market.jpg';
     }
   };
   
-  // Get era-specific pattern
-  const getEraPattern = () => {
+  // Get era-specific overlay color
+  const getEraOverlay = () => {
     switch (leader.era.toLowerCase()) {
       case 'ancient':
-        return 'bg-ancient-pattern';
+        return 'bg-gradient-to-t from-amber-900/90 to-amber-900/30';
       case 'medieval':
-        return 'bg-medieval-pattern';
+        return 'bg-gradient-to-t from-slate-900/90 to-slate-900/30';
       case 'renaissance':
-        return 'bg-renaissance-pattern';
+        return 'bg-gradient-to-t from-red-900/90 to-red-900/30';
       case 'enlightenment':
-        return 'bg-enlightenment-pattern';
+        return 'bg-gradient-to-t from-blue-900/90 to-blue-900/30';
       case 'modern':
-        return 'bg-modern-pattern';
+        return 'bg-gradient-to-t from-teal-900/90 to-teal-900/30';
       default:
-        return 'bg-default-pattern';
+        return 'bg-gradient-to-t from-gray-900/90 to-gray-900/30';
     }
   };
 
@@ -57,17 +92,17 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
   }, [onLoadComplete]);
 
   return (
-    <div className={`relative h-52 overflow-hidden ${getEraBackground()} transition-colors duration-500`}>
+    <div className="relative h-52 overflow-hidden transition-colors duration-500">
       {isRevealed ? (
         <>
-          <div className={`absolute inset-0 opacity-20 ${getEraPattern()}`}></div>
+          {/* Wikimedia image as background */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${getWikimediaImage(leader.name)})` }}
+          />
           
-          {/* Decorative elements based on era */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-24 h-24 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center">
-              <span className="text-white/80 text-4xl font-spectral">{leader.name.charAt(0)}</span>
-            </div>
-          </div>
+          {/* Overlay for better text readability */}
+          <div className={`absolute inset-0 ${getEraOverlay()}`}></div>
           
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
           <div className="absolute bottom-0 left-0 p-4 text-white z-10">
@@ -79,7 +114,7 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
           </div>
         </>
       ) : (
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
           <div className="rounded-full w-16 h-16 bg-black/20 flex items-center justify-center backdrop-blur-sm">
             <span className="text-white/60 text-2xl font-spectral">?</span>
           </div>
