@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Leader } from '@/data/leaders';
 import { cn } from '@/lib/utils';
@@ -40,14 +39,26 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
       'mansa musa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Mansa_Musa.jpg/800px-Mansa_Musa.jpg',
       'winston churchill': 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Sir_Winston_Churchill_-_19086236948.jpg/800px-Sir_Winston_Churchill_-_19086236948.jpg',
       'empress theodora': 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Meister_von_San_Vitale_in_Ravenna_003.jpg/800px-Meister_von_San_Vitale_in_Ravenna_003.jpg',
-      'ashoka the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ashoka_Pillar_at_Vaishali%2C_Bihar%2C_India.jpg/800px-Ashoka_Pillar_at_Vaishali%2C_Bihar%2C_India.jpg',
+      'ashoka the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Sanchi_Stupa_No2_Side_View.jpg/800px-Sanchi_Stupa_No2_Side_View.jpg',
       'simon bolivar': 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Sim%C3%B3n_Bol%C3%ADvar_by_Arturo_Michelena.jpg/800px-Sim%C3%B3n_Bol%C3%ADvar_by_Arturo_Michelena.jpg',
       'maria theresa': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Maria_Theresia_portraitt.jpg/800px-Maria_Theresia_portraitt.jpg',
       'lorenzo de medici': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Giorgio_Vasari_-_Lorenzo_de%27_Medici_-_Google_Art_Project.jpg/800px-Giorgio_Vasari_-_Lorenzo_de%27_Medici_-_Google_Art_Project.jpg',
       'frederick the great': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Friedrich_der_Grosse_1763.jpg/800px-Friedrich_der_Grosse_1763.jpg'
     };
     
-    return imageMapping[normalizedName] || getEraDefaultImage(leader.era);
+    // Try exact match first
+    if (imageMapping[normalizedName]) {
+      return imageMapping[normalizedName];
+    }
+    
+    // Try partial matching for variations
+    for (const [key, value] of Object.entries(imageMapping)) {
+      if (normalizedName.includes(key.split(' ')[0]) || key.includes(normalizedName.split(' ')[0])) {
+        return value;
+      }
+    }
+    
+    return getEraDefaultImage(leader.era);
   };
   
   // Fallback images by era
@@ -93,6 +104,7 @@ const LeaderHeader: React.FC<LeaderHeaderProps> = ({
   };
 
   const handleImageError = () => {
+    console.log(`Failed to load image for ${leader.name}, using fallback`);
     setImageError(true);
     setImageLoaded(false);
     onLoadComplete();
