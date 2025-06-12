@@ -16,7 +16,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* Add all new routes above the final "*" fallback route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
