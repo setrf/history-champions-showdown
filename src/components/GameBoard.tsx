@@ -46,31 +46,40 @@ export default function GameBoard({ onEraChange }: GameBoardProps) {
   // Start a new game with filtered leaders based on era
   const startNewGame = () => {
     let filteredLeaders = leaders;
-    
+
     // Filter by era if not "all"
     if (selectedEra !== "all") {
       filteredLeaders = leaders.filter(leader => leader.era === selectedEra);
     }
-    
+
+    let newState = initializeGame(filteredLeaders);
+
     // Apply difficulty adjustments
     if (difficulty === "easy") {
-      // In easy mode, player gets leaders with higher stats
-      filteredLeaders = filteredLeaders.map(leader => ({
-        ...leader,
-        stats: {
-          military: Math.min(100, Math.floor(leader.stats.military * 1.1)),
-          diplomacy: Math.min(100, Math.floor(leader.stats.diplomacy * 1.1)),
-          culture: Math.min(100, Math.floor(leader.stats.culture * 1.1)),
-          economy: Math.min(100, Math.floor(leader.stats.economy * 1.1)),
-          science: Math.min(100, Math.floor(leader.stats.science * 1.1)),
-        }
-      }));
+      // In easy mode, only the player's leaders get a small stat boost
+      const buffStats = (stats: Leader['stats']) => ({
+        military: Math.min(100, Math.floor(stats.military * 1.1)),
+        diplomacy: Math.min(100, Math.floor(stats.diplomacy * 1.1)),
+        culture: Math.min(100, Math.floor(stats.culture * 1.1)),
+        economy: Math.min(100, Math.floor(stats.economy * 1.1)),
+        science: Math.min(100, Math.floor(stats.science * 1.1)),
+      });
+
+      newState = {
+        ...newState,
+        playerCard: newState.playerCard
+          ? { ...newState.playerCard, stats: buffStats(newState.playerCard.stats) }
+          : null,
+        playerDeck: newState.playerDeck.map(l => ({
+          ...l,
+          stats: buffStats(l.stats),
+        })),
+      };
     } else if (difficulty === "hard") {
-      // In hard mode, computer gets better AI strategy
-      // The actual implementation is in the getComputerMove function with difficulty param
+      // In hard mode, computer gets better AI strategy via getComputerMove
     }
-    
-    setGameState(initializeGame(filteredLeaders));
+
+    setGameState(newState);
     setShowingRoundResult(false);
     setIsComputerThinking(false);
   };
@@ -107,7 +116,7 @@ export default function GameBoard({ onEraChange }: GameBoardProps) {
   useEffect(() => {
     if (gameState.roundWinner && showingRoundResult) {
       let title = "";
-      let description = gameState.message;
+      const description = gameState.message;
       let variant: "default" | "destructive" = "default";
       
       if (gameState.roundWinner === 'player') {
