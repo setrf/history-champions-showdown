@@ -75,12 +75,16 @@ export function playRound(
   const playerScore = roundWinner === 'player' ? state.playerScore + 1 : state.playerScore;
   const computerScore = roundWinner === 'computer' ? state.computerScore + 1 : state.computerScore;
   
-  // Draw next cards
-  const playerCard = state.playerDeck.shift() || null;
-  const computerCard = state.computerDeck.shift() || null;
+  // Make copies of the decks to keep previous state immutable
+  const playerDeckCopy = [...state.playerDeck];
+  const computerDeckCopy = [...state.computerDeck];
+
+  // Draw next cards from the copied decks
+  const playerCard = playerDeckCopy.shift() || null;
+  const computerCard = computerDeckCopy.shift() || null;
   
   // Check if game is over
-  const gameOver = state.playerDeck.length === 0 || state.computerDeck.length === 0;
+  const gameOver = playerDeckCopy.length === 0 || computerDeckCopy.length === 0;
   
   // In this implementation, the winner of the round gets the next turn
   // For ties, we keep the same turn
@@ -88,6 +92,8 @@ export function playRound(
   
   return {
     ...state,
+    playerDeck: playerDeckCopy,
+    computerDeck: computerDeckCopy,
     playerCard,
     computerCard,
     selectedStat,
