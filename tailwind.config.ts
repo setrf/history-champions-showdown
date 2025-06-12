@@ -85,8 +85,9 @@ export default {
       },
       fontFamily: {
         'spectral': ['Spectral', 'serif'],
-        'sans': ['Inter', 'sans-serif'],
-        'roboto': ['Roboto Flex', 'sans-serif']
+        'sans': ['Open Sans', 'sans-serif'],
+        'roboto': ['Open Sans', 'sans-serif'],
+        'cinzel': ['MedievalSharp', 'serif']
       },
       keyframes: {
         'accordion-down': {

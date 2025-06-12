@@ -30,6 +30,14 @@ npm i
 npm run dev
 ```
 
+**Run tests**
+
+After installing dependencies, you can execute the unit tests with:
+
+```sh
+npm test
+```
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
