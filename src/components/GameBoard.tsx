@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Leader } from '../data/leaders';
-import { 
-  GameState, 
-  initializeGame, 
-  playRound, 
+import {
+  GameState,
+  initializeGame,
+  playRound,
   getComputerMove,
-  getGameResult
+  getGameResult,
+  buffStats,
 } from '@/utils/gameLogic';
 import { leaders } from '@/data/leaders';
 import { useToast } from '@/components/ui/use-toast';
@@ -57,14 +58,6 @@ export default function GameBoard({ onEraChange }: GameBoardProps) {
     // Apply difficulty adjustments
     if (difficulty === "easy") {
       // In easy mode, only the player's leaders get a small stat boost
-      const buffStats = (stats: Leader['stats']) => ({
-        military: Math.min(100, Math.floor(stats.military * 1.1)),
-        diplomacy: Math.min(100, Math.floor(stats.diplomacy * 1.1)),
-        culture: Math.min(100, Math.floor(stats.culture * 1.1)),
-        economy: Math.min(100, Math.floor(stats.economy * 1.1)),
-        science: Math.min(100, Math.floor(stats.science * 1.1)),
-      });
-
       newState = {
         ...newState,
         playerCard: newState.playerCard
