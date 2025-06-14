@@ -1,6 +1,19 @@
 
 import { Leader } from "../data/leaders";
 
+export function buffStats(
+  stats: Leader["stats"],
+  multiplier: number = 1.1
+): Leader["stats"] {
+  return {
+    military: Math.min(100, Math.floor(stats.military * multiplier)),
+    diplomacy: Math.min(100, Math.floor(stats.diplomacy * multiplier)),
+    culture: Math.min(100, Math.floor(stats.culture * multiplier)),
+    economy: Math.min(100, Math.floor(stats.economy * multiplier)),
+    science: Math.min(100, Math.floor(stats.science * multiplier)),
+  };
+}
+
 export type GameState = {
   playerDeck: Leader[];
   computerDeck: Leader[];
