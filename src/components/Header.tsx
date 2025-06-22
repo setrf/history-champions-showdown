@@ -1,11 +1,15 @@
 
 import React from 'react';
 import { Crown, Sparkles } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   return (
     <header className="w-full pt-8 pb-6">
-      <div className="container max-w-7xl mx-auto px-4">
+      <div className="container max-w-7xl mx-auto px-4 relative">
+        <div className="absolute top-0 right-0 mt-2 mr-2">
+          <ThemeToggle />
+        </div>
         <div className="flex flex-col items-center justify-center text-center">
           <div className="animate-scale-in">
             <div className="inline-flex items-center justify-center p-3 bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-700 rounded-full mb-4 shadow-lg">
