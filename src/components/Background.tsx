@@ -64,7 +64,7 @@ const Background: React.FC<BackgroundProps> = ({
   return (
     <div className="fixed inset-0 -z-10">
       <div
-        className={`absolute inset-0 bg-gradient-to-br from-amber-200/60 to-amber-500/40 dark:from-stone-800 dark:to-stone-900`}
+        className={`absolute inset-0 bg-gradient-to-br from-blue-200/60 to-blue-500/40 dark:from-slate-800 dark:to-slate-900`}
       />
       <div className={`absolute inset-0 ${getBackgroundPattern()} opacity-10`} />
     </div>
