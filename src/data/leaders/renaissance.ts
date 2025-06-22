@@ -64,5 +64,47 @@ export const renaissanceLeaders: Leader[] = [
       "Maintained peace in Italy through diplomatic balance of power",
       "Commissioned works by Michelangelo, Botticelli, and da Vinci"
     ]
+  },
+  {
+    id: 23,
+    name: "Leonardo da Vinci",
+    era: "Renaissance",
+    country: "Italy",
+    years: "1452 - 1519",
+    image: "/leaders/da_vinci.jpg",
+    bio: "Italian polymath whose works in art, science and engineering epitomized the Renaissance ideal.",
+    stats: {
+      military: 60,
+      diplomacy: 70,
+      culture: 99,
+      economy: 75,
+      science: 95
+    },
+    achievements: [
+      "Painted the Mona Lisa and The Last Supper",
+      "Made pioneering studies in anatomy and engineering",
+      "Envisioned inventions centuries ahead of his time"
+    ]
+  },
+  {
+    id: 24,
+    name: "Suleiman the Magnificent",
+    era: "Renaissance",
+    country: "Ottoman Empire",
+    years: "1494 - 1566",
+    image: "/leaders/suleiman.jpg",
+    bio: "Sultan of the Ottoman Empire who presided over its golden age of military and cultural power.",
+    stats: {
+      military: 90,
+      diplomacy: 85,
+      culture: 88,
+      economy: 92,
+      science: 70
+    },
+    achievements: [
+      "Expanded the empire deep into Europe and the Middle East",
+      "Codified Ottoman laws and administration",
+      "Patronized arts, architecture and literature"
+    ]
   }
 ];

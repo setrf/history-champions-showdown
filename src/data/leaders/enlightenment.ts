@@ -64,5 +64,47 @@ export const enlightenmentLeaders: Leader[] = [
       "Patron of the arts, music, and Enlightenment ideas",
       "Military genius who modernized Prussian tactics"
     ]
+  },
+  {
+    id: 25,
+    name: "Isaac Newton",
+    era: "Enlightenment",
+    country: "England",
+    years: "1643 - 1727",
+    image: "/leaders/newton.jpg",
+    bio: "Mathematician and physicist whose laws of motion and gravity founded modern science.",
+    stats: {
+      military: 30,
+      diplomacy: 65,
+      culture: 80,
+      economy: 70,
+      science: 100
+    },
+    achievements: [
+      "Formulated the laws of motion and universal gravitation",
+      "Published the 'Principia Mathematica'",
+      "Developed calculus independently"
+    ]
+  },
+  {
+    id: 26,
+    name: "Voltaire",
+    era: "Enlightenment",
+    country: "France",
+    years: "1694 - 1778",
+    image: "/leaders/voltaire.jpg",
+    bio: "French philosopher and writer famous for his wit and advocacy of civil liberties.",
+    stats: {
+      military: 40,
+      diplomacy: 85,
+      culture: 95,
+      economy: 70,
+      science: 80
+    },
+    achievements: [
+      "Criticized authority and championed freedom of expression",
+      "Influenced revolutionary thought in France and America",
+      "Prolific author of essays, books and letters"
+    ]
   }
 ];
