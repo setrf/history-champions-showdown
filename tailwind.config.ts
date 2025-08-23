@@ -25,8 +25,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Iosevka", "monospace"],
-        mono: ["Iosevka", "monospace"],
+        sans: ["Inter", "sans-serif"],
+        mono: ["IBM Plex Mono", "monospace"],
       },
       borderRadius: {
         DEFAULT: "var(--radius)",
