@@ -9,7 +9,7 @@ interface GameControlsProps {
 
 const GameControls: React.FC<GameControlsProps> = ({ onRestart }) => {
   return (
-    <div className="flex justify-center mt-8 animate-slide-up" style={{ animationDelay: '400ms' }}>
+    <div className="flex justify-center mt-8">
       <Button 
         onClick={onRestart}
         variant="outline"
