@@ -161,7 +161,7 @@ export default function GameBoard({ onEraChange }: GameBoardProps) {
   return (
     <div className="game-container py-8">
       {/* Game settings */}
-      <div className="mb-8 animate-slide-up" style={{ animationDelay: '50ms' }}>
+      <div className="mb-8">
         <Tabs defaultValue="play" className="w-full">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3">
             <TabsTrigger value="play">Play Game</TabsTrigger>
@@ -197,7 +197,7 @@ export default function GameBoard({ onEraChange }: GameBoardProps) {
       </div>
       
       {/* Game message */}
-      <GameMessage 
+      <GameMessage
         gameOver={gameState.gameOver}
         gameState={gameState}
         isComputerThinking={isComputerThinking}
@@ -207,14 +207,13 @@ export default function GameBoard({ onEraChange }: GameBoardProps) {
       />
       
       {/* Game cards */}
-      <GameCards 
+      <GameCards
         playerCard={gameState.playerCard}
         computerCard={gameState.computerCard}
         isPlayerTurn={gameState.isPlayerTurn}
         showingRoundResult={showingRoundResult}
         handleSelectStat={handleSelectStat}
         selectedStat={gameState.selectedStat}
-        roundWinner={gameState.roundWinner}
       />
       
       {/* Game controls */}

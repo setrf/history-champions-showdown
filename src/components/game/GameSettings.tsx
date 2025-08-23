@@ -27,7 +27,7 @@ const GameSettings: React.FC<GameSettingsProps> = ({
   eras,
 }) => {
   return (
-    <div className="space-y-4 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg max-w-md mx-auto">
+    <div className="space-y-4 p-4 max-w-md mx-auto">
       <div>
         <label className="text-sm font-medium mb-2 block">
           Historical Era
