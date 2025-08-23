@@ -25,8 +25,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
+        sans: ["Iosevka", "monospace"],
+        mono: ["Iosevka", "monospace"],
       },
       borderRadius: {
         DEFAULT: "var(--radius)",
