@@ -10,9 +10,9 @@ interface GameControlsProps {
 const GameControls: React.FC<GameControlsProps> = ({ onRestart }) => {
   return (
     <div className="flex justify-center mt-8">
-      <Button 
+      <Button
         onClick={onRestart}
-        variant="outline"
+        variant="secondary"
         size="lg"
         className="flex items-center gap-2"
       >

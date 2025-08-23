@@ -1,44 +1,75 @@
 
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: #ffffff;
-    --foreground: #000000;
-    --card: #ffffff;
-    --card-foreground: #000000;
-    --popover: #ffffff;
-    --popover-foreground: #000000;
-    --muted: #f2f2f2;
-    --muted-foreground: #404040;
-    --accent: #0066ff;
-    --accent-foreground: #ffffff;
-    --destructive: var(--accent);
-    --destructive-foreground: #ffffff;
-    --border: #000000;
-    --input: #000000;
-    --ring: var(--accent);
-    --radius: 2px;
+    /* design tokens */
+    --color-bg-base: #ffffff;
+    --color-bg-panel: #f7f8f9;
+    --color-line-hair: #d9dde3;
+    --color-text-primary: #0b0b0b;
+    --color-text-secondary: #44474d;
+    --color-text-muted: #6b6f76;
+    --color-accent-brand: #4da3ff;
+    --color-state-success: #2ecc71;
+    --color-state-warning: #ffc857;
+    --color-state-danger: #ff5a5f;
+    --color-focus-ring: var(--color-accent-brand);
+
+    --font-sans: "Inter", sans-serif;
+    --font-mono: "IBM Plex Mono", monospace;
+
+    /* legacy mappings */
+    --background: var(--color-bg-base);
+    --foreground: var(--color-text-primary);
+    --card: var(--color-bg-panel);
+    --card-foreground: var(--color-text-primary);
+    --popover: var(--color-bg-panel);
+    --popover-foreground: var(--color-text-primary);
+    --muted: var(--color-bg-panel);
+    --muted-foreground: var(--color-text-muted);
+    --accent: var(--color-accent-brand);
+    --accent-foreground: var(--color-bg-base);
+    --destructive: var(--color-accent-brand);
+    --destructive-foreground: var(--color-bg-base);
+    --border: var(--color-line-hair);
+    --input: var(--color-line-hair);
+    --ring: var(--color-focus-ring);
+    --radius: 8px;
   }
 
   .dark {
-    --background: #0d0d0d;
-    --foreground: #ffffff;
-    --card: #1a1a1a;
-    --card-foreground: #ffffff;
-    --popover: #1a1a1a;
-    --popover-foreground: #ffffff;
-    --muted: #262626;
-    --muted-foreground: #b3b3b3;
-    --accent: #4c8dff;
-    --accent-foreground: #0d0d0d;
-    --destructive: var(--accent);
-    --destructive-foreground: #0d0d0d;
-    --border: #ffffff;
-    --input: #ffffff;
-    --ring: var(--accent);
+    --color-bg-base: #0a0a0a;
+    --color-bg-panel: #0f0f10;
+    --color-line-hair: #1e1f22;
+    --color-text-primary: #e6e7e9;
+    --color-text-secondary: #aaaaaf;
+    --color-text-muted: #7a7c82;
+    --color-accent-brand: #4da3ff;
+    --color-state-success: #2ecc71;
+    --color-state-warning: #ffc857;
+    --color-state-danger: #ff5a5f;
+    --color-focus-ring: var(--color-accent-brand);
+
+    --background: var(--color-bg-base);
+    --foreground: var(--color-text-primary);
+    --card: var(--color-bg-panel);
+    --card-foreground: var(--color-text-primary);
+    --popover: var(--color-bg-panel);
+    --popover-foreground: var(--color-text-primary);
+    --muted: #121214;
+    --muted-foreground: var(--color-text-muted);
+    --accent: var(--color-accent-brand);
+    --accent-foreground: #0b0b0b;
+    --destructive: var(--color-accent-brand);
+    --destructive-foreground: #0b0b0b;
+    --border: var(--color-line-hair);
+    --input: var(--color-line-hair);
+    --ring: var(--color-focus-ring);
   }
 }
 
@@ -49,7 +80,8 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Iosevka', monospace;
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
   }
 }
 
