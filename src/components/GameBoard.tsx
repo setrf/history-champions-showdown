@@ -5,6 +5,7 @@ import {
   initializeGame,
   playRound,
   getComputerMove,
+  prepareNextRound,
 } from '@/utils/gameLogic';
 import GameStatus from './game/GameStatus';
 import GameMessage from './game/GameMessage';
@@ -12,78 +13,101 @@ import GameCards from './game/GameCards';
 import GameControls from './game/GameControls';
 
 export default function GameBoard() {
-  const [gameState, setGameState] = useState<GameState>(initializeGame(leaders));
-  const [isComputerThinking, setIsComputerThinking] = useState(false);
-  const [showingRoundResult, setShowingRoundResult] = useState(false);
+  const [gameState, setGameState] = useState<GameState | null>(null);
+  const [phase, setPhase] = useState<
+    'idle' | 'player-turn' | 'computer-thinking' | 'round-result'
+  >('idle');
 
   useEffect(() => {
     if (
-      !gameState.isPlayerTurn &&
+      phase === 'computer-thinking' &&
+      gameState &&
       !gameState.gameOver &&
-      gameState.computerCard &&
-      !showingRoundResult
+      gameState.computerCard
     ) {
-      setIsComputerThinking(true);
       const timer = setTimeout(() => {
         const move = getComputerMove(gameState.computerCard as Leader);
-        setGameState((current) => playRound(current, move));
-        setIsComputerThinking(false);
-        setShowingRoundResult(true);
+        setGameState((current) =>
+          current ? playRound(current, move) : current
+        );
+        setPhase('round-result');
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [
-    gameState.isPlayerTurn,
-    gameState.gameOver,
-    gameState.computerCard,
-    showingRoundResult,
-  ]);
+  }, [phase, gameState]);
 
   useEffect(() => {
-    if (showingRoundResult && !gameState.gameOver) {
-      const timer = setTimeout(() => setShowingRoundResult(false), 2000);
+    if (phase === 'round-result' && gameState && !gameState.gameOver) {
+      const nextPhase = gameState.isPlayerTurn
+        ? 'player-turn'
+        : 'computer-thinking';
+      const timer = setTimeout(() => {
+        setGameState((current) =>
+          current ? prepareNextRound(current) : current
+        );
+        setPhase(nextPhase);
+      }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [showingRoundResult, gameState.gameOver]);
+  }, [phase, gameState]);
 
   const handleSelectStat = (stat: keyof Leader['stats']) => {
-    if (gameState.isPlayerTurn && !showingRoundResult) {
-      setGameState((current) => playRound(current, stat));
-      setShowingRoundResult(true);
+    if (phase === 'player-turn' && gameState) {
+      setGameState((current) =>
+        current ? playRound(current, stat) : current
+      );
+      setPhase('round-result');
     }
   };
 
-  const handleRestart = () => {
-    setGameState(initializeGame(leaders));
-    setShowingRoundResult(false);
-    setIsComputerThinking(false);
+  const startNewGame = () => {
+    const newGame = initializeGame(leaders);
+    setGameState(newGame);
+    setPhase(newGame.isPlayerTurn ? 'player-turn' : 'computer-thinking');
   };
 
   return (
     <div className="space-y-8">
-      <GameStatus
-        roundNumber={gameState.roundNumber}
-        playerScore={gameState.playerScore}
-        computerScore={gameState.computerScore}
-        playerDeckLength={gameState.playerDeck.length}
-      />
-      <GameMessage
-        gameOver={gameState.gameOver}
-        gameState={gameState}
-        isComputerThinking={isComputerThinking}
-        showingRoundResult={showingRoundResult}
-        message={gameState.message}
-        isPlayerTurn={gameState.isPlayerTurn}
-      />
-      <GameCards
-        playerCard={gameState.playerCard}
-        computerCard={gameState.computerCard}
-        isPlayerTurn={gameState.isPlayerTurn}
-        showingRoundResult={showingRoundResult}
-        handleSelectStat={handleSelectStat}
-        selectedStat={gameState.selectedStat}
-      />
-      <GameControls onRestart={handleRestart} />
+      {gameState ? (
+        <>
+          <GameStatus
+            roundNumber={gameState.roundNumber}
+            playerScore={gameState.playerScore}
+            computerScore={gameState.computerScore}
+            playerDeckLength={gameState.playerDeck.length}
+          />
+          <GameMessage
+            gameOver={gameState.gameOver}
+            gameState={gameState}
+            isComputerThinking={phase === 'computer-thinking'}
+            showingRoundResult={phase === 'round-result'}
+            message={gameState.message}
+            isPlayerTurn={phase === 'player-turn'}
+          />
+          <GameCards
+            playerCard={gameState.playerCard}
+            computerCard={gameState.computerCard}
+            isPlayerTurn={phase === 'player-turn'}
+            showingRoundResult={phase === 'round-result'}
+            handleSelectStat={handleSelectStat}
+            selectedStat={gameState.selectedStat}
+          />
+          <GameControls
+            gameStarted={true}
+            onStart={startNewGame}
+            onRestart={startNewGame}
+          />
+        </>
+      ) : (
+        <div className="flex flex-col items-center">
+          <p className="mb-4">Click start to begin the game</p>
+          <GameControls
+            gameStarted={false}
+            onStart={startNewGame}
+            onRestart={startNewGame}
+          />
+        </div>
+      )}
     </div>
   );
 }

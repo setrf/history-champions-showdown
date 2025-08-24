@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { initializeGame, playRound, getGameResult, GameState } from '../gameLogic';
+import { initializeGame, playRound, getGameResult, GameState, prepareNextRound } from '../gameLogic';
 import { Leader } from '../../data/types/leader';
 
 const leaderA: Leader = {
@@ -66,7 +66,7 @@ describe('initializeGame', () => {
 });
 
 describe('playRound', () => {
-  it('updates state when player wins the round', () => {
+  it('updates state when player wins the round and prepares next round correctly', () => {
     const baseState: GameState = {
       playerDeck: [leaderC],
       computerDeck: [leaderD],
@@ -82,15 +82,21 @@ describe('playRound', () => {
       message: ''
     };
 
-    const result = playRound(baseState, 'military');
+    const played = playRound(baseState, 'military');
 
-    expect(result.roundWinner).toBe('player');
-    expect(result.playerScore).toBe(1);
-    expect(result.computerScore).toBe(0);
-    expect(result.playerCard).toEqual(leaderC);
-    expect(result.computerCard).toEqual(leaderD);
-    expect(result.roundNumber).toBe(2);
-    expect(result.isPlayerTurn).toBe(true);
+    expect(played.roundWinner).toBe('player');
+    expect(played.playerScore).toBe(1);
+    expect(played.computerScore).toBe(0);
+    expect(played.playerCard).toEqual(leaderA);
+    expect(played.computerCard).toEqual(leaderB);
+    expect(played.roundNumber).toBe(1);
+    expect(played.isPlayerTurn).toBe(true);
+
+    const next = prepareNextRound(played);
+    expect(next.playerCard).toEqual(leaderC);
+    expect(next.computerCard).toEqual(leaderD);
+    expect(next.roundNumber).toBe(2);
+    expect(next.selectedStat).toBeNull();
   });
 });
 

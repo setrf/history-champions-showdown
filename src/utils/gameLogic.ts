@@ -85,38 +85,54 @@ export function playRound(
   }
   
   // Update score
-  const playerScore = roundWinner === 'player' ? state.playerScore + 1 : state.playerScore;
-  const computerScore = roundWinner === 'computer' ? state.computerScore + 1 : state.computerScore;
-  
-  // Make copies of the decks to keep previous state immutable
+  const playerScore =
+    roundWinner === 'player' ? state.playerScore + 1 : state.playerScore;
+  const computerScore =
+    roundWinner === 'computer' ? state.computerScore + 1 : state.computerScore;
+
+  // Determine if the game is over (no more cards left in either deck)
+  const gameOver =
+    state.playerDeck.length === 0 || state.computerDeck.length === 0;
+
+  // In this implementation, the winner of the round gets the next turn
+  // For ties, we keep the same turn
+  const isPlayerTurn =
+    roundWinner === 'player' || (roundWinner === 'tie' && state.isPlayerTurn);
+
+  return {
+    ...state,
+    selectedStat,
+    roundWinner,
+    gameOver,
+    playerScore,
+    computerScore,
+    roundNumber: state.roundNumber,
+    isPlayerTurn,
+    message,
+  };
+}
+
+export function prepareNextRound(state: GameState): GameState {
+  if (state.gameOver) {
+    return state;
+  }
+
   const playerDeckCopy = [...state.playerDeck];
   const computerDeckCopy = [...state.computerDeck];
 
-  // Draw next cards from the copied decks
   const playerCard = playerDeckCopy.shift() || null;
   const computerCard = computerDeckCopy.shift() || null;
-  
-  // Check if game is over
-  const gameOver = playerDeckCopy.length === 0 || computerDeckCopy.length === 0;
-  
-  // In this implementation, the winner of the round gets the next turn
-  // For ties, we keep the same turn
-  const isPlayerTurn = roundWinner === 'player' || (roundWinner === 'tie' && state.isPlayerTurn);
-  
+
   return {
     ...state,
     playerDeck: playerDeckCopy,
     computerDeck: computerDeckCopy,
     playerCard,
     computerCard,
-    selectedStat,
-    roundWinner,
-    gameOver,
-    playerScore,
-    computerScore,
+    selectedStat: null,
+    roundWinner: null,
+    message: 'Select a stat to play!',
     roundNumber: state.roundNumber + 1,
-    isPlayerTurn,
-    message,
   };
 }
 
