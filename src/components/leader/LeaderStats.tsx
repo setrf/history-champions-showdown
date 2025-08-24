@@ -1,6 +1,5 @@
 import React from "react";
 import { Leader } from "@/data/leaders";
-import { cn } from "@/lib/utils";
 import { formatStatName } from "@/utils/gameLogic";
 import {
   Sword,
@@ -49,12 +48,11 @@ const LeaderStats: React.FC<LeaderStatsProps> = ({
         return (
           <div
             key={stat}
-            className={cn(
-              "flex items-center justify-between px-2 py-1 border border-border",
-              isSelectable &&
-                "cursor-pointer hover:bg-accent hover:text-accent-foreground",
-              isSelected && "bg-accent text-accent-foreground"
-            )}
+            className={`flex items-center justify-between px-2 py-1 border border-border ${
+              isSelectable
+                ? "cursor-pointer hover:bg-accent hover:text-accent-foreground"
+                : ""
+            } ${isSelected ? "bg-accent text-accent-foreground" : ""}`}
             onClick={() => {
               if (isSelectable && onSelectStat) {
                 onSelectStat(statKey);
