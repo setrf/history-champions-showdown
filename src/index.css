@@ -18,7 +18,7 @@
     --color-state-danger: #ff5a5f;
     --color-focus-ring: var(--color-accent-brand);
 
-    --font-sans: "Inter", sans-serif;
+    --font-sans: "IBM Plex Mono", monospace;
     --font-mono: "IBM Plex Mono", monospace;
 
     /* legacy mappings */
