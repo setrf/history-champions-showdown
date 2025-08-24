@@ -20,8 +20,8 @@ const GameCards: React.FC<GameCardsProps> = ({
   selectedStat,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-start gap-6 md:gap-10 mb-8">
-      <div className="w-full max-w-xs">
+    <div className="flex flex-row justify-start md:justify-center items-start gap-6 md:gap-10 mb-8 overflow-x-auto">
+      <div className="flex-shrink-0 w-full max-w-xs">
         <p className="text-center text-sm mb-2">Your Leader</p>
         {playerCard && (
           <LeaderCard
@@ -33,11 +33,11 @@ const GameCards: React.FC<GameCardsProps> = ({
         )}
       </div>
 
-      <div className="flex items-center justify-center my-2 md:my-0">
+      <div className="flex-shrink-0 flex items-center justify-center">
         <span className="px-3 py-1 border border-border text-sm">vs</span>
       </div>
 
-      <div className="w-full max-w-xs">
+      <div className="flex-shrink-0 w-full max-w-xs">
         <p className="text-center text-sm mb-2">Computer's Leader</p>
         {computerCard && (
           <LeaderCard
