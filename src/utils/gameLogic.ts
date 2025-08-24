@@ -1,5 +1,5 @@
 
-import { Leader } from "../data/leaders";
+import type { Leader } from "../data/types/leader";
 
 export function buffStats(
   stats: Leader["stats"],
