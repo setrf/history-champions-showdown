@@ -2,6 +2,12 @@
 
 History Champions Showdown is a lightweight browser game where you battle the computer using cards that feature famous historical leaders. Choose the best attribute on your leader's card and see whose stat prevails. The player with the most round wins becomes the champion.
 
+## Project Structure
+- `src/App.tsx` – main application component.
+- `src/components/` – reusable UI building blocks.
+- `src/data/` – historical leader data.
+- `src/utils/` – game logic helpers.
+
 ## Development
 
 ### Prerequisites
