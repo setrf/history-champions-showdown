@@ -5,6 +5,7 @@ import {
   initializeGame,
   playRound,
   getComputerMove,
+  prepareNextRound,
 } from '@/utils/gameLogic';
 import GameStatus from './game/GameStatus';
 import GameMessage from './game/GameMessage';
@@ -37,8 +38,14 @@ export default function GameBoard() {
 
   useEffect(() => {
     if (phase === 'round-result' && gameState && !gameState.gameOver) {
+      const nextPhase = gameState.isPlayerTurn
+        ? 'player-turn'
+        : 'computer-thinking';
       const timer = setTimeout(() => {
-        setPhase(gameState.isPlayerTurn ? 'player-turn' : 'computer-thinking');
+        setGameState((current) =>
+          current ? prepareNextRound(current) : current
+        );
+        setPhase(nextPhase);
       }, 2000);
       return () => clearTimeout(timer);
     }
