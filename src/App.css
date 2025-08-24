@@ -6,6 +6,12 @@
   text-align: center;
 }
 
+@media (max-width: 640px) {
+  #root {
+    padding: 1rem;
+  }
+}
+
 .card-glow {
   box-shadow: 0 0 15px 5px rgba(107, 114, 255, 0.15);
 }

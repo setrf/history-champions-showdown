@@ -25,7 +25,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ["IBM Plex Mono", "monospace"],
         mono: ["IBM Plex Mono", "monospace"],
       },
       borderRadius: {
